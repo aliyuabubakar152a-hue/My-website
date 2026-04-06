@@ -1,34 +1,74 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Personal Website</title>
-  <link rel="stylesheet" href="style.css">
+  <title>My Website</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f5f5;
+      text-align: center;
+      padding: 20px;
+      margin: 0;
+    }
+
+    h1 {
+      color: #333;
+    }
+
+    .card {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 20px auto;
+      width: 90%;
+      max-width: 400px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    button {
+      padding: 10px 20px;
+      border: none;
+      background: black;
+      color: white;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    img {
+      max-width: 100%;
+      margin-top: 10px;
+      border-radius: 10px;
+    }
+  </style>
 </head>
+
 <body>
 
-  <h1>Welcome to Assalafy's Website 👋</h1>
-  <p>This is my first personal website built on my phone!</p>
+<h1>Welcome to My Website 🚀</h1>
 
-  <button onclick="showMessage()">talk to assalafy</button>
+<div class="card">
+  <h3>Upload Image</h3>
+  <input type="file" id="fileInput">
+  <br><br>
+  <button onclick="uploadImage()">Upload</button>
+  <img id="preview">
+</div>
 
-  <script src="script.js"></script>
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>My Personal Website</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<script>
+function uploadImage() {
+  const file = document.getElementById("fileInput").files[0];
+  const preview = document.getElementById("preview");
 
-  <div class="card">
-    <h1>👋 Hello, I'm Aliyu</h1>
-    <p>Welcome to my personal website built on my phone 🚀</p>
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      preview.src = e.target.result;
+    }
+    reader.readAsDataURL(file);
+  }
+}
+</script>
 
-    <button onclick="showMessage()">Click Me</button>
-  </div>
-
-  <script src="script.js"></script>
 </body>
 </html>
