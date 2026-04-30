@@ -1,60 +1,182 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>My Website</title>
+  <title>Aliyu Abubakar Assalafy</title>
+<body>
+<h1>marhaban!</h1>
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5f5f5;
+<h1 class="typing">Welcome to My Animated Website 🚀</h1>
+<nav>
+  <button onclick="showPage('home')">Home</button>
+  <button onclick="showPage('gallery')">Gallery</button>
+  <button onclick="showPage('videos')">Videos</button>
+  <button onclick="showPage('login')">Login</button>
+</nav>
+
+<!-- HOME -->
+<div id="home" class="page active">
+  <p>This is my personal website where I share images and videos.</p>
+</div>
+
+<!-- GALLERY -->
+<div id="gallery" class="page">
+  <h2>Gallery</h2>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/300" />
+  </div>
+
+  <div class="card">
+    <img src="https://via.placeholder.com/300" />
+  </div>
+
+</div>
+
+<!-- VIDEOS -->
+<div id="videos" class="page">
+  <h2>Videos</h2>
+
+  <div class="card">
+    <video controls>
+      <source src="https://www.w3schools.com/html/mov_bbb.mp4">
+    </video>
+  </div>
+
+</div>
+
+<!-- LOGIN -->
+<div id="login" class="page">
+  <h2>Login</h2>
+
+  <input type="email" placeholder="Email"><br>
+  <input type="password" placeholder="Password"><br>
+  <button>Login</button>
+
+  <p>(Firebase not connected yet)</p>
+</div>
+
+<!-- UPLOAD -->
+<div class="page" id="upload">
+  <h2>Upload Media</h2>
+
+  <input type="file" id="fileInput"><br>
+  <button onclick="previewFile()">Upload</button>
+
+  <div id="preview"></div>
+</div>
+
+</head>
+<style>
+body {
       text-align: center;
       padding: 20px;
       margin: 0;
-    }
-
-    h1 {
-      color: #333;
-    }
-
-    .card {
-      background: white;
-      padding: 20px;
-      border-radius: 15px;
-      margin: 20px auto;
-      width: 90%;
-      max-width: 400px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    }
-
-    button {
-      padding: 10px 20px;
-      border: none;
-      background: black;
+      background-size: 400% 400%;
+      animation: gradientMove 10s ease infinite;
       color: white;
-      border-radius: 10px;
-      cursor: pointer;
-    }
+      background: linear-gradient(-45deg, #111, #333, #555, #111);
+}
 
-    img {
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+button {
+  padding: 12px 20px;
+  border: 1px solid #444;
+  background: #000;
+  color: white;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+  box-shadow: 0 0 10px rgba(255,255,255,0.1);
+  
+}
+
+button:hover {
+  background: #333;
+  transform: scale(1.1);
+}
+
+img {
       max-width: 100%;
       margin-top: 10px;
       border-radius: 10px;
     }
-  </style>
-</head>
+@keyframes fadeIn {
+     from {
+   opacity: 0;
+   transform: translateY(20px);
+}
+to {
+    opacity: 1;
+     transform: translateY(0);
+}
 
-<body>
+.fade {
+    animation: fadeIn 1s ease-in-out;
+}
+.typing {
+  overflow: hidden;
+  white-space: nowrap;
+  border-right: 3px solid white;
+  width: 0;
+  animation: typing 3s steps(30, end) forwards, blink 0.7s infinite;
+}
 
-<h1>Welcome to My Website 🚀</h1>
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
 
-<div class="card">
-  <h3>Upload Image</h3>
-  <input type="file" id="fileInput">
-  <br><br>
-  <button onclick="uploadImage()">Upload</button>
-  <img id="preview">
-</div>
+@keyframes blink {
+  50% { border-color: transparent }
+}
+nav {
+  background: black;
+  padding: 15px;
+  
+nav button {
+      margin: 5px;
+      padding: 10px;
+      border: none;
+      background: #333;
+      color: white;
+      border-radius: 8px;
+    }
 
+    .page {
+      display: none;
+      padding: 20px;
+    }
+
+    .active {
+      display: block;
+    }
+
+    .card {
+      background: #222;
+      padding: 15px;
+      margin: 10px auto;
+      width: 90%;
+      max-width: 400px;
+      border-radius: 10px;
+    }
+
+    img, video {
+      width: 100%;
+      border-radius: 10px;
+    }
+
+    input {
+      padding: 10px;
+      margin: 5px;
+      width: 80%;
+    }
+
+</style>
 <script>
 function uploadImage() {
   const file = document.getElementById("fileInput").files[0];
@@ -68,7 +190,51 @@ function uploadImage() {
     reader.readAsDataURL(file);
   }
 }
-</script>
+function clickEffect(btn) {
+ btn.style.transform = "scale(0.9)";
+ setTimeout(() => {
+ btn.style.transform = "scale(1)";
+ }, 100);
+}
+window.addEventListener("scroll", function () {
+  let elements = document.querySelectorAll(".card");
+  elements.forEach(el => {
+    let position = el.getBoundingClientRect().top;
+    let screenHeight = window.innerHeight;
 
+    if (position < screenHeight - 100) {
+      el.style.opacity = "1";
+      el.style.transform = "translateY(0)";
+    }
+  });
+});
+
+<!-- JAVASCRIPT -->
+<script>
+function showPage(pageId) {
+  let pages = document.querySelectorAll('.page');
+  pages.forEach(p => p.classList.remove('active'));
+  document.getElementById(pageId).classList.add('active');
+}
+
+function previewFile() {
+  const file = document.getElementById("fileInput").files[0];
+  const preview = document.getElementById("preview");
+
+  if (!file) return;
+
+  const reader = new FileReader();
+
+  reader.onload = function(e) {
+    if (file.type.startsWith("image")) {
+      preview.innerHTML = `<img src="${e.target.result}" />`;
+    } else if (file.type.startsWith("video")) {
+      preview.innerHTML = `<video controls src="${e.target.result}"></video>`;
+    }
+  };
+
+  reader.readAsDataURL(file);
+}
+</script>
 </body>
 </html>
