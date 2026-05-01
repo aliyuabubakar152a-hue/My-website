@@ -98,7 +98,7 @@
 
 <div id="upload" class="page">
   <input type="file" id="fileInput"><br>
-  <button onclick="uploadFile()">Upload</button>
+  <button id="uploadBtn">Upload</button>
   <div id="preview"></div>
 </div>
 
@@ -147,14 +147,11 @@ window.uploadFile = function () {
 
   uploadBytes(storageRef, file).then(()=>{
     getDownloadURL(storageRef).then(url=>{
-      document.getElementById("preview").innerHTML =
-        file.type.startsWith("image")
-        ? `<img src="${url}">`
-        : `<video controls src="${url}"></video>`;
-    });
-  });
-};
-window.uploadFile = function () {
+      document.getElementById("preview").innerHTML 
+
+document.getElementById("uploadBtn").addEventListener("click", uploadFile);
+
+function.uploadFile =  () {
   const file = document.getElementById("fileInput").files[0];
   if (!file) return alert("Select file");
 
@@ -168,11 +165,9 @@ window.uploadFile = function () {
         ? `<img src="${url}">`
         : `<video controls src="${url}"></video>`;
     })
-    .catch(err => {
-      console.error(err);
-      alert("Upload failed: " + err.message);
-    });
-};
+    .catch(err => 
+      alert (err.message));
+}
 </script>
 
 </body>
