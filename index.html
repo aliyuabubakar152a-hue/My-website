@@ -256,6 +256,62 @@ const firebaseConfig = {
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
+<script type="module">
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+
+/* 🔴 PASTE YOUR CONFIG HERE */
+const firebaseConfig = {
+  apiKey: "YOUR_KEY",
+  authDomain: "YOUR_DOMAIN",
+  projectId: "YOUR_ID",
+  storageBucket: "YOUR_BUCKET",
+  messagingSenderId: "YOUR_MSG_ID",
+  appId: "YOUR_APP_ID"
+};
+
+const app = initializeApp(firebaseConfig);
+const auth = getAuth(app);
+const storage = getStorage(app);
+
+/* 🔐 LOGIN FUNCTION */
+window.loginUser = function () {
+  const email = document.querySelector('input[type="email"]').value;
+  const password = document.querySelector('input[type="password"]').value;
+
+  signInWithEmailAndPassword(auth, email, password)
+    .then(() => {
+      alert("Login successful ✅");
+    })
+    .catch(err => alert(err.message));
+};
+
+/* 📤 UPLOAD FUNCTION */
+window.uploadFile = function () {
+  const file = document.getElementById("fileInput").files[0];
+
+  if (!file) return alert("Select a file first");
+
+  const storageRef = ref(storage, "uploads/" + file.name);
+
+  uploadBytes(storageRef, file).then(() => {
+    getDownloadURL(storageRef).then(url => {
+      alert("Uploaded ✅");
+
+      const preview = document.getElementById("preview");
+
+      if (file.type.startsWith("image")) {
+        preview.innerHTML = `<img src="${url}" />`;
+      } else {
+        preview.innerHTML = `<video controls src="${url}"></video>`;
+      }
+    });
+  });
+};
+
+</script>
 </script>
 </body>
 </html>
