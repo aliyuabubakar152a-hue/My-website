@@ -5,7 +5,7 @@
 <body>
 <h1>marhaban!</h1>
 
-<h1 class="typing">Welcome to My Animated Website 🚀</h1>
+<h1 class="typing">Welcome to My Assalafy's Website 🚀</h1>
 <nav>
   <button onclick="showPage('home')">Home</button>
   <button onclick="showPage('gallery')">Gallery</button>
@@ -26,9 +26,6 @@
     <img src="https://via.placeholder.com/300" />
   </div>
 
-  <div class="card">
-    <img src="https://via.placeholder.com/300" />
-  </div>
 
 </div>
 
@@ -52,7 +49,7 @@
   <input type="password" placeholder="Password"><br>
   <button>Login</button>
 
-  <p>(Firebase not connected yet)</p>
+  <p>(اللهم صل على محمد )</p>
 </div>
 
 <!-- UPLOAD -->
@@ -65,7 +62,6 @@
   <div id="preview"></div>
 </div>
 <button onclick="loginUser()">Login</button>
-<button onclick="uploadFile()">Upload</button>
 
 </head>
 <style>
@@ -211,8 +207,6 @@ window.addEventListener("scroll", function () {
   });
 });
 
-<!-- JAVASCRIPT -->
-<script>
 function showPage(pageId) {
   let pages = document.querySelectorAll('.page');
   pages.forEach(p => p.classList.remove('active'));
@@ -264,21 +258,11 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebas
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
-/* 🔴 PASTE YOUR CONFIG HERE */
-const firebaseConfig = {
-  apiKey: "YOUR_KEY",
-  authDomain: "YOUR_DOMAIN",
-  projectId: "YOUR_ID",
-  storageBucket: "YOUR_BUCKET",
-  messagingSenderId: "YOUR_MSG_ID",
-  appId: "YOUR_APP_ID"
-};
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const storage = getStorage(app);
 
-/* 🔐 LOGIN FUNCTION */
 window.loginUser = function () {
   const email = document.querySelector('input[type="email"]').value;
   const password = document.querySelector('input[type="password"]').value;
@@ -290,7 +274,6 @@ window.loginUser = function () {
     .catch(err => alert(err.message));
 };
 
-/* 📤 UPLOAD FUNCTION */
 window.uploadFile = function () {
   const file = document.getElementById("fileInput").files[0];
 
@@ -313,7 +296,6 @@ window.uploadFile = function () {
   });
 };
 
-</script>
 </script>
 </body>
 </html>
