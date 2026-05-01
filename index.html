@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+7<!DOCTYPE html>
 <html>
 
 <head>
@@ -146,7 +146,25 @@ window.uploadFile = function () {
     });
   });
 };
+window.uploadFile = function () {
+  const file = document.getElementById("fileInput").files[0];
+  if (!file) return alert("Select file");
 
+  const storageRef = ref(storage, "uploads/" + Date.now() + "_" + file.name);
+
+  uploadBytes(storageRef, file)
+    .then(() => getDownloadURL(storageRef))
+    .then(url => {
+      document.getElementById("preview").innerHTML =
+        file.type.startsWith("image")
+        ? `<img src="${url}">`
+        : `<video controls src="${url}"></video>`;
+    })
+    .catch(err => {
+      console.error(err);
+      alert("Upload failed: " + err.message);
+    });
+};
 </script>
 
 </body>
