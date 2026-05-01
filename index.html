@@ -1,4 +1,4 @@
-7<!DOCTYPE html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -102,22 +102,21 @@
   <div id="preview"></div>
 </div>
 
-<!-- NORMAL JS -->
 <script>
 function showPage(id){
   document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
   document.getElementById(id).classList.add('active');
 }
+</script>
 
-<!-- FIREBASE (ONLY THIS) -->
 <script type="module">
-
+// FIREBASE
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBTwSA_6pilZKinCnYuERTl9hTchJ24kQU",
+  apiKey: "AIzaSy...",
   authDomain: "my-website-ae2e9.firebaseapp.com",
   projectId: "my-website-ae2e9",
   storageBucket: "my-website-ae2e9.appspot.com",
@@ -142,18 +141,6 @@ window.uploadFile = function () {
   const file = document.getElementById("fileInput").files[0];
   if (!file) return alert("Select file");
 
-  const storageRef = ref(storage, "uploads/" + file.name);
-
-  uploadBytes(storageRef, file).then(()=>{
-    getDownloadURL(storageRef).then(url=>{
-      document.getElementById("preview").innerHTML 
-
-document.getElementById("uploadBtn").addEventListener("click", uploadFile);
-
-function.uploadFile =  () {
-  const file = document.getElementById("fileInput").files[0];
-  if (!file) return alert("Select file");
-
   const storageRef = ref(storage, "uploads/" + Date.now() + "_" + file.name);
 
   uploadBytes(storageRef, file)
@@ -164,10 +151,6 @@ function.uploadFile =  () {
         ? `<img src="${url}">`
         : `<video controls src="${url}"></video>`;
     })
-    .catch(err => 
-      alert (err.message));
-}
+    .catch(err => alert(err.message));
+};
 </script>
-
-</body>
-</html>
